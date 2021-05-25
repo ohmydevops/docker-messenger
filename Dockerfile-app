@@ -1,0 +1,9 @@
+FROM php:8.0.6-cli-alpine
+
+COPY index.php /app/index.php
+
+WORKDIR /app
+
+EXPOSE 80
+
+ENTRYPOINT [ "php", "-S", "0.0.0.0:80" ]

@@ -1,0 +1,46 @@
+version: "3.9"
+   
+services:
+  app1:
+    build:
+      context: .
+      dockerfile: Dockerfile-app
+    init: true
+    environment: 
+      - SECRET=5501034628
+      - APP_ID=App 1
+    container_name: app1
+    networks:
+      - app1
+    depends_on: 
+      - bridge
+
+  app2:
+    build:
+        context: .
+        dockerfile: Dockerfile-app
+    init: true
+    environment: 
+        - SECRET=8211584750
+        - APP_ID=App 2
+    container_name: app2
+    networks:
+      - app2
+    depends_on: 
+      - bridge
+      
+      
+  bridge:
+    build:
+        context: .
+        dockerfile: Dockerfile-bridge
+    container_name: bridge
+    networks:
+     - app1
+     - app2
+
+networks:
+  app1:
+    driver: bridge
+  app2:
+    driver: bridge
