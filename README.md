@@ -15,10 +15,36 @@
   
  #### نحوه اجرا
 
+</div>
+  
 ```shell
 git clone https://github.com/amirbagh75/docker-messenger docker-messenger
 cd docker-messenger
 docker-compose up -d
 ```
+
+<div dir='rtl'>
+
+#### نحوه پرس‌وجو 
+  
+میتوانید برای نمونه وارد کانتینر شماره یک شوید و یک درخواست http ارسال کنید:
   
 </div>
+
+```shell
+docker-compose exec app1 sh
+/app # curl bridge/app2
+```
+
+<div dir='rtl'>
+  
+دستور `curl bridge/app2` یعنی به کانتینر واسط که نام آن‌را در این مثال bridge گذاشتیم، درخواست http روی مسیر /app2 ارسال میکنیم. این درخواست توسط کانتینر واسط که در این‌جا یک وب‌سرور Nginx میباشد به کانتینر دوم پراکسی میشود و جواب توسط کانتینر دوم به واسط برمیگردد و در نهایت کانتینر واسط جواب را به کانتینر اول میرساند. جواب بازگشتی بدین صورت میباشد:
+  
+ </div>
+ 
+```json
+{
+    "APP_ID": "App 2",
+    "SECRET": "8211584750"
+}
+```
